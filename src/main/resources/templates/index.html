@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Matriculas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <div class="container">
+        <br>
+        <div th:if="${msgExito != null}" class="alert alert-success alert-dismissible">
+            [[${msgExito}]]
+            <button type="button" class="btn btn-close" data-bs-dismiss="alert"></button>
+        </div>
+
+        <h1>Lista de Matrículas</h1>
+        <div class="text-center my-3">
+            <a href="/nuevo" class="btn btn-primary"><i class="fas fa-user-plus"></i>&nbsp;Matrícula Nueva</a>
+        </div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>CODIGO</th>
+                    <th>FECHA</th>
+                    <th>DNI</th>
+                    <th>NOMBRE</th>
+                    <th>TELEFONO</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="matricula : ${matriculas}">
+                    <td th:text="${matricula.cod_matricula}"></td>
+                    <td th:text="${#temporals.format(matricula.fecha_matricula, 'dd/MM/YYYY hh:mm a')}"></td>
+                    <td th:text="${matricula.dni}"></td>
+                    <td th:text="${matricula.nombre_alumno}"></td>               
+                    <td th:text="${matricula.telefono}"></td>
+                    <td>
+                        <a th:href="@{/{cod_matricula}/editar(cod_matricula=${matricula.cod_matricula})}" class="btn btn-warning"><i class="fas fa-edit"></i>&nbsp;Editar</a>
+                        <a href="#" onclick="eliminarMatricula(this)" class="btn btn-danger"><i class="fas fa-trash-alt"></i>&nbsp;Eliminar</a>
+                        <form th:action="@{/{cod_matricula}/eliminar(cod_matricula=${matricula.cod_matricula})}" method="post"></form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+
+    <script>
+        function eliminarMatricula(elemento) {
+            var ok = confirm('Se va a eliminar la matricula ¿Desea continuar?');
+            if (ok) {
+                elemento.nextElementSibling.submit();
+            }
+        }
+    </script>
+</body>
+
+</html>
