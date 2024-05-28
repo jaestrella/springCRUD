@@ -31,6 +31,7 @@
                     <th>DNI</th>
                     <th>NOMBRE</th>
                     <th>PRECIO €</th>
+                    <th>Nº ASIGNATURAS</th>
                     <th>FECHA</th>
                     <th>TELEFONO</th>
                 </tr>
@@ -41,6 +42,7 @@
                     <td th:text="${matricula.dni}"></td>
                     <td th:text="${matricula.nombre_alumno}"></td> 
                     <td th:text="${matricula.precio}"></td> 
+                    <td th:text="${matricula.asignaturas}"></td>
                     <td th:text="${#temporals.format(matricula.fecha_matricula, 'dd/MM/YYYY hh:mm a')}"></td>             
                     <td th:text="${matricula.telefono}"></td>
                     <td>

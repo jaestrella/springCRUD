@@ -53,6 +53,14 @@
                     <div th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}" class="invalid-feedback"></div>
                 </div>
 
+                <div class="mb-3">
+                    <label for="asignaturas">Nº ASIGNATURAS : </label>
+                    <input id="asignaturas" type="number"  placeholder="Introduzca las asignaturas" th:field="*{asignaturas}"
+                        class="form-control" th:errorClass="is-invalid">
+
+                    <div th:if="${#fields.hasErrors('asignaturas')}" th:errors="*{asignaturas}" class="invalid-feedback"></div>
+                </div>
+
                 <div class="text-end">
                     <button class="btn btn-success"><i class="fas fa-save"></i>
                         &nbsp;Guardar

@@ -32,6 +32,9 @@ public class Matricula {
     @Min(value = 0, message = "Debe de introducir una cantidad mayor que 0")
     private float precio;
 
+    @Min(value = 1, message = "Debe de introducir una cantidad mayor que 0")
+    private int asignaturas;
+
 
     public Long getCod_matricula() {
         return this.cod_matricula;
@@ -80,6 +83,14 @@ public class Matricula {
     public void setPrecio(float precio) {
         this.precio = precio;
     }
+
+    public int getAsignaturas() {
+        return asignaturas;
+    }
+
+    public void setAsignaturas(int asignaturas) {
+        this.asignaturas = asignaturas;
+    }
    
     @PrePersist
     public void asignarFecha(){
@@ -87,13 +98,15 @@ public class Matricula {
     }
 
 
-    public Matricula(Long cod_matricula, LocalDateTime fecha_matricula, String dni, String nombre_alumno, String telefono, float precio) {
+    public Matricula(Long cod_matricula, LocalDateTime fecha_matricula, String dni, 
+        String nombre_alumno, String telefono, float precio, int asignaturas) {
         this.cod_matricula = cod_matricula;
         this.fecha_matricula = fecha_matricula;
         this.dni = dni;
         this.nombre_alumno = nombre_alumno;
         this.telefono = telefono;
         this.precio=precio;
+        this.asignaturas=asignaturas;
     }
     
 
