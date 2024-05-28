@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
@@ -27,6 +28,9 @@ public class Matricula {
 
     @NotBlank(message = "Debe de introducir el telefono del alumno")
     private String telefono;
+
+    @Min(value = 0, message = "Debe de introducir una cantidad mayor que 0")
+    private float precio;
 
 
     public Long getCod_matricula() {
@@ -68,6 +72,14 @@ public class Matricula {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
+
+    public float getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(float precio) {
+        this.precio = precio;
+    }
    
     @PrePersist
     public void asignarFecha(){
@@ -75,12 +87,13 @@ public class Matricula {
     }
 
 
-    public Matricula(Long cod_matricula, LocalDateTime fecha_matricula, String dni, String nombre_alumno, String telefono) {
+    public Matricula(Long cod_matricula, LocalDateTime fecha_matricula, String dni, String nombre_alumno, String telefono, float precio) {
         this.cod_matricula = cod_matricula;
         this.fecha_matricula = fecha_matricula;
         this.dni = dni;
         this.nombre_alumno = nombre_alumno;
         this.telefono = telefono;
+        this.precio=precio;
     }
     
 
